@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Findata - Findata Blog</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <nav class="nav-container">
+        <a href="../index.html" class="logo">Findata</a>
+        <ul class="nav-links">
+            <div class="nav-group primary">
+                <li><a href="../index.html#company">Company</a></li>
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../index.html#product">Product</a></li>
+                <li><a href="../blog/index.html">Blog</a></li>
+            </div>
+            <div class="nav-group secondary">
+                <li><a href="#search" class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a></li>
+                <li><a href="#login" class="login-btn">Login</a></li>
+                <li><a href="#get-started" class="cta-btn">Get in touch</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <main>
+        <article class="blog-post">
+            <div class="blog-header">
+                <h1>Getting Started with Findata</h1>
+                <div class="post-meta">
+                    <time datetime="Tue Jan 09 2024 17:00:00 GMT-0700 (Mountain Standard Time)">January 9, 2024</time>
+                    <span class="tag">guide</span><span class="tag">introduction</span><span class="tag">trading</span>
+                </div>
+            </div>
+            <div class="blog-content">
+                <p>Welcome to Findata! In this guide, we&#39;ll walk you through everything you need to know to get started with our modern brokerage platform.</p>
+<h2 id="what-is-findata">What is Findata?</h2>
+<p>Findata is a technology-first brokerage platform designed to modernize the trading ecosystem. We provide institutional clients with a comprehensive suite of tools and services to streamline their trading operations.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Advanced Trading Platform</strong>: Execute trades with precision using our state-of-the-art trading interface</li>
+<li><strong>Real-time Analytics</strong>: Monitor your portfolio performance with detailed analytics and insights</li>
+<li><strong>Risk Management</strong>: Robust risk management tools to help you make informed decisions</li>
+<li><strong>API Integration</strong>: Seamless integration with your existing systems through our modern API</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<ol>
+<li><p><strong>Create an Account</strong>
+First, reach out to our team to set up your institutional account.</p>
+</li>
+<li><p><strong>Complete Onboarding</strong>
+Our team will guide you through the onboarding process, including:</p>
+<ul>
+<li>Account verification</li>
+<li>Trading limits setup</li>
+<li>Platform configuration</li>
+</ul>
+</li>
+<li><p><strong>Start Trading</strong>
+Once your account is set up, you can begin trading immediately.</p>
+</li>
+</ol>
+<h2 id="code-example">Code Example</h2>
+<p>Here&#39;s a simple example of how to use our API:</p>
+<pre><code class="language-python">from findata import Client
+
+# Initialize the client
+client = Client(api_key=&quot;your_api_key&quot;)
+
+# Place a trade
+trade = client.place_order(
+    symbol=&quot;AAPL&quot;,
+    side=&quot;buy&quot;,
+    quantity=100,
+    price=150.00
+)
+
+print(f&quot;Order placed: {trade.id}&quot;)
+</code></pre>
+<h2 id="next-steps">Next Steps</h2>
+<p>Ready to get started? <a href="#">Contact our team</a> to begin your journey with Findata.</p>
+<hr>
+<p><em>This is just the beginning of what you can do with Findata. Stay tuned for more detailed guides and tutorials.</em> </p>
+
+            </div>
+        </article>
+    </main>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

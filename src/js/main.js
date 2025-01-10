@@ -1,3 +1,12 @@
+// Format date helper function
+function formatDate(date) {
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
 // Markdown converter utility
 const convertMarkdownToHtml = (markdown) => {
     return marked.parse(markdown);
@@ -22,23 +31,27 @@ async function loadBlogPosts() {
     if (!latestPostsElement) return;
 
     try {
-        // In a real site, this would be loaded from a JSON file or API
-        const posts = [
-            { title: 'Welcome to my blog', file: 'posts/welcome.md', date: '2024-01-10' },
-            { title: 'Getting Started', file: 'posts/getting-started.md', date: '2024-01-09' }
-        ];
+        const response = await fetch('blog/posts.json');
+        if (!response.ok) throw new Error('Failed to load posts');
+        const posts = await response.json();
 
-        const postsHtml = posts.map(post => `
-            <article class="post">
-                <h2>${post.title}</h2>
-                <div class="post-meta">Posted on ${post.date}</div>
-                <a href="/blog/${post.file.replace('.md', '.html')}">Read more</a>
+        // Display the latest 3 posts
+        const postsHtml = posts.slice(0, 3).map(post => `
+            <article>
+                <h3><a href="blog/${post.slug}.html">${post.title}</a></h3>
+                <div class="post-meta">
+                    <time datetime="${post.date}">${formatDate(new Date(post.date))}</time>
+                    ${post.tags ? `<div class="tags">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''}
+                </div>
+                <div class="post-excerpt">${post.excerpt}</div>
+                <a href="blog/${post.slug}.html">Read more →</a>
             </article>
         `).join('');
 
         latestPostsElement.innerHTML = postsHtml;
     } catch (error) {
         console.error('Error loading blog posts:', error);
+        latestPostsElement.innerHTML = '<p>Error loading posts</p>';
     }
 }
 
@@ -52,4 +65,115 @@ document.addEventListener('DOMContentLoaded', () => {
         loadMarkdownContent(markdownContent.dataset.source)
             .then(html => markdownContent.innerHTML = html);
     }
+});
+
+// Chart.js configuration
+document.addEventListener('DOMContentLoaded', function () {
+    // Set default Chart.js colors and styles
+    Chart.defaults.color = '#fff';
+    Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
+
+    // Main chart
+    const mainCtx = document.getElementById('mainChart').getContext('2d');
+    const mainChart = new Chart(mainCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+            datasets: [{
+                label: 'Performance',
+                data: [30, 45, 35, 50, 40, 60, 55, 70, 65],
+                borderColor: '#4834E4',
+                backgroundColor: 'rgba(72, 52, 228, 0.1)',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.05)'
+                    },
+                    border: {
+                        display: false
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    border: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    // Secondary chart
+    const secondaryCtx = document.getElementById('secondaryChart').getContext('2d');
+    const secondaryChart = new Chart(secondaryCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Growth',
+                data: [20, 35, 25, 45, 30, 55],
+                borderColor: '#6B5EE5',
+                backgroundColor: 'rgba(107, 94, 229, 0.1)',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.05)'
+                    },
+                    border: {
+                        display: false
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    border: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
 }); 

@@ -4,20 +4,21 @@
     "description": "Simple static site with markdown support",
     "main": "index.js",
     "scripts": {
-        "start": "npm run build && npx http-server ./dist -c-1 --cors",
-        "dev": "npm run build && concurrently \"npm run watch\" \"npx http-server ./dist -c-1 --cors\"",
+        "start": "npm run build && npx http-server ./dist",
+        "dev": "npm run build && concurrently \"npm run watch\" \"npx http-server ./dist\"",
         "build": "node build.js",
         "watch": "node build.js --watch",
         "clean": "rimraf dist/*"
     },
     "dependencies": {
-        "marked": "^4.3.0"
+        "marked": "^4.3.0",
+        "gray-matter": "^4.0.3"
     },
     "devDependencies": {
-        "http-server": "^14.1.1",
         "concurrently": "^8.2.2",
         "rimraf": "^5.0.5",
         "chokidar": "^3.5.3",
-        "fs-extra": "^11.2.0"
+        "fs-extra": "^11.2.0",
+        "http-server": "^14.1.1"
     }
 }

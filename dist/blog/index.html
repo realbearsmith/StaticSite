@@ -1,39 +1,49 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - My Website</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <a href="../index.html" class="logo">My Site</a>
-                <ul class="nav-links">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../blog/index.html">Blog</a></li>
-                    <li><a href="../pages/about.html">About</a></li>
-                    <li><a href="../pages/faq.html">FAQ</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <article class="content">
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Blog - Findata</title>
+                <link rel="stylesheet" href="../css/style.css">
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+            </head>
+            <body>
+                <nav class="nav-container">
+                    <a href="../index.html" class="logo">Findata</a>
+                    <ul class="nav-links">
+                        <div class="nav-group primary">
+                            <li><a href="../index.html#company">Company</a></li>
+                            <li><a href="../index.html#services">Services</a></li>
+                            <li><a href="../index.html#product">Product</a></li>
+                            <li><a href="../blog/index.html">Blog</a></li>
+                        </div>
+                        <div class="nav-group secondary">
+                            <li><a href="#search" class="search-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a></li>
+                            <li><a href="#login" class="login-btn">Login</a></li>
+                            <li><a href="#get-started" class="cta-btn">Get in touch</a></li>
+                        </div>
+                    </ul>
+                </nav>
+                <main class="blog-index">
+                    <h1>Latest Blog Posts</h1>
+                    <div class="blog-list">
+                        
+                <article class="blog-preview">
+                    <h2><a href="getting-started-with-findata.html">Getting Started with Findata</a></h2>
+                    <div class="post-meta">
+                        <time datetime="Tue Jan 09 2024 17:00:00 GMT-0700 (Mountain Standard Time)">January 9, 2024</time>
+                        <div class="tags"><span class="tag">guide</span><span class="tag">introduction</span><span class="tag">trading</span></div>
+                    </div>
+                </article>
             
-            <h1>Blog Posts</h1>
-            <ul class="post-list">
-                
-            </ul>
+                    </div>
+                </main>
+                <script src="../js/main.js"></script>
+            </body>
+            </html>
         
-        </article>
-    </main>
-    <footer>
-        <p>&copy; 2024 My Website. All rights reserved.</p>
-    </footer>
-    <script src="../js/main.js"></script>
-</body>
-</html>
