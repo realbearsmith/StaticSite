@@ -3,7 +3,7 @@ const path = require('path');
 const { marked } = require('marked');
 const chokidar = require('chokidar');
 
-// HTML template for wrapping markdown content
+// HTML template for wrapping markdown content (used for pages and blog posts only)
 const createHtmlTemplate = (title, content) => `
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +100,13 @@ async function build() {
     await fs.copy(path.join(__dirname, 'src', 'js'), path.join(__dirname, 'dist', 'js'));
     console.log('Copied static assets');
 
+    // Ensure index.html exists in dist
+    const indexPath = path.join(__dirname, 'dist', 'index.html');
+    if (!await fs.pathExists(indexPath)) {
+        await fs.copy(path.join(__dirname, 'src', 'index.html'), indexPath);
+        console.log('Created initial index.html');
+    }
+
     // Process pages
     const pagesDir = path.join(__dirname, 'src', 'content', 'pages');
     const pagesFiles = await fs.readdir(pagesDir);
@@ -131,7 +138,12 @@ async function build() {
 // Watch mode
 if (process.argv.includes('--watch')) {
     console.log('Watching for changes...');
-    const watcher = chokidar.watch(['src/content/**/*.md', 'src/css/**/*', 'src/js/**/*'], {
+    const watcher = chokidar.watch([
+        'src/content/**/*.md',
+        'src/css/**/*',
+        'src/js/**/*',
+        'src/index.html'
+    ], {
         persistent: true
     });
 
